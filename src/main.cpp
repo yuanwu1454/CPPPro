@@ -2,6 +2,8 @@
 #include "Ptr.h"
 #include "ClassA.h"
 #include "MyNs.h"
+#include "ConstCastTest.h"
+#include "StaticCast.h"
 using namespace std;
 // 构造函数
 // 拷贝构造函数
@@ -53,13 +55,15 @@ extern int a;
 int main()
 {
 
-    cout << A2::k << endl;
-    cout << A2::v << endl;
-    cout << A2::p << endl;
-
-    MyNS::func();
-    cout << MyNS::svar << endl;
-    cout << MyNS::k << endl;
+    // ConstCastTest::Test();
+    StaticCast::Test();
+    // cout << A2::k << endl;
+    // cout << A2::v << endl;
+    // cout << A2::p << endl;
+    //
+    // MyNS::func();
+    // cout << MyNS::svar << endl;
+    // cout << MyNS::k << endl;
     //DDerived* p = new DDerived();
     //Base* p = new DDerived();
     //shared_ptr<Base> p2(p);
@@ -86,22 +90,6 @@ void AddressTest() {
 }
 
 void ClassTest() {
-    // 构造函数
-    ClassA a(10, "zxcvzxcv");
-
-    // 拷贝构造函数
-    ClassA b = a;
-
-    // 先普通构造函数
-    ClassA c(10, "zxcvzxcv");
-    // 赋值运算符重载调用
-    c = c;
-
-
-    printf("\n\n开始测试移动构造函数\n\n");
-    ClassA d(45, "qwerqwer");
-    // 移动构造函数
-    ClassA e = std::move(d);
 
 }
 
