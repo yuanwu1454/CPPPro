@@ -1,5 +1,6 @@
 #include "StaticCast.h"
 #include "Common.h"
+#include "Test.h"
 enum class Fruit
 {
     Apple = 3,
@@ -46,6 +47,7 @@ public:
 void StaticCast::Test()
 {
     cout << "StaticCast Begin" <<endl;
+    cout << my_namespace::a <<endl;
     // static_cast 提前拦截， 不是可有可无
     // 1. 第一层：显式标注，提升可读性（你感知到的 “强化展示”）
     // 2. 第二层：编译期检查，拦截非法转换（核心价值）

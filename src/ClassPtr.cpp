@@ -14,11 +14,11 @@ void Person::Test(){
 
     // 4. 通过类成员指针访问对象的成员（必须绑定对象）
     // 语法：对象.*类成员指针  或  对象指针->*类成员指针
-    cout << "p1's name：" << p1.*p_age << endl; // 输出 20
-    cout << "p2's name：" << p2.*p_name << endl; // 输出 李四
+    cout << p1.*p_age << endl; // 输出 20
+    cout << "p2's name" << p2.*p_name << endl; // 输出 李四
 
     Person* p_ptr = &p1;
-    cout << "p1's name：" << p_ptr->*p_name << endl; // 输出 张三
+    cout << "p1's name" << p_ptr->*p_name << endl; // 输出 张三
 
    // 1. 定义指向 Person 类的成员函数的指针
     // 语法：返回值 (类名::*指针名)(参数列表) = &类名::函数名;

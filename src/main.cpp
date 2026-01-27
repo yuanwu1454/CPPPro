@@ -4,13 +4,16 @@
 #include "MyNs.h"
 #include "ConstCastTest.h"
 #include "StaticCast.h"
+#include "Test.h"
 using namespace std;
 // 构造函数
 // 拷贝构造函数
 // 默认拷贝构造函数的缺点
 // 移动构造函数
-// 非 const 版本拷贝构造函数
-// noexcept 的作用
+// static_cast, dynamic_cast, const_cast
+// shared,unique,weak
+// new,delete, malloc, free
+
 
 
 void AddressTest();
@@ -57,6 +60,8 @@ int main()
 
     // ConstCastTest::Test();
     StaticCast::Test();
+
+    cout << my_namespace::a<<endl;
     // cout << A2::k << endl;
     // cout << A2::v << endl;
     // cout << A2::p << endl;
