@@ -75,3 +75,9 @@ void ConstCastTest::Test()
         // const int* p 与 int const* p 表示的都是指针指向的值不可修改
     }
 }
+
+
+namespace MyNS
+{
+    int kvar =7;
+}
