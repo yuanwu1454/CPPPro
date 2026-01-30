@@ -1,6 +1,6 @@
 #include "ClassA.h"
 #include "MyNs.h"
-
+int ClassA::value2 = 4;
 namespace MyNS {
 
     int svar = 100;

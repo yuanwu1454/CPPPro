@@ -5,19 +5,31 @@
 #include "ConstCastTest.h"
 #include "StaticCast.h"
 #include "ReinterpretCast.h"
+#include "TemplateTest.h"
 #include "Test.h"
 using namespace std;
-// 构造函数
-// 拷贝构造函数
-// 默认拷贝构造函数的缺点
-// 移动构造函数
+
+// ctor，destructor,copy ctor,move ctor, copy assign, move assign 
 // static_cast, dynamic_cast, const_cast, reinterpret_cast
-// shared,unique,weak
+// shared,unique,weak,auto
 // new,delete, malloc, free
-// virtual,override, volatile, using
-// namespace
-
-
+// virtual,override, volatile, using,final
+// namespace, class, struct
+// volatile, const, restrict, mutable, static, register, thread_local 
+// 内存大小与对齐
+// auto,decltype,nullptr,initialize_list,tuple
+// enum, union
+// using,typdef
+// #define, const
+// string,vector,array,pair,map,set
+// lvalues, rvalues
+// template
+// 基类的……	公开继承（public）	保护继承（protected）	私有继承（private）
+// 公开成员将……	成为子类的公开成员	成为子类的保护成员	成为子类的私有成员
+// 保护成员将……	成为子类的保护成员	成为子类的保护成员	成为子类的私有成员
+// 私有成员将……	对子类不可见	对子类不可见	对子类不可见
+//protected inheritance， private inheritance【composition 备选项】
+// 私有继承 保护继承
 
 void AddressTest();
 void ClassTest();
@@ -63,7 +75,8 @@ int main()
 
     // ConstCastTest::Test();
     // StaticCast::Test();
-    ReinterpretCast::Test();
+    // ReinterpretCast::Test();
+    TemplateTest::Test();
 
     // cout << my_namespace::a<<endl;
     // cout << A2::k << endl;

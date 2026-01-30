@@ -26,6 +26,9 @@ void print_type_detail() {
         cout << "float";
     } else if constexpr (is_same_v<T, char>) {
         cout << "char";
+    } else if constexpr (is_same_v<T, double>)
+    {
+        cout << "double";
     }
     // 可扩展其他基础类型（如 double、bool 等）
 }

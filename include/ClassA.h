@@ -37,6 +37,7 @@ public:
 	friend istream& operator>>(istream& is, ClassA& p);
 
 	static void Test();
+	static int value2;
 	
 protected:
 	void DelRes(bool bPrint=false);
