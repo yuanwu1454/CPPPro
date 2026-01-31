@@ -16,6 +16,20 @@ using StrMap = map<string, T>;
 // 模版特化，模版参数包
 // 模板实例化（Template Instantiation）
 
+// 优化手段：
+// 容易造成代码膨胀
+
+
+// 优点：
+// 1. 冗余代码少
+// 2. 编译期检查
+// 3. 只付出你使用的成本，不付出你不用的成本
+// 缺点：
+// 1. 调试难
+// 2. 学习难度高
+// 3. 容易造成代码膨胀
+// 4. 编译时间长,影响开发效率
+// 
 // 场景1：通用常量（不同类型的圆周率）
 template <typename T>
 const T PI = T(3.14159265358979323846);
@@ -24,22 +38,41 @@ const T PI = T(3.14159265358979323846);
 template <typename T>
 T GlobalMaxValue = T(0);
 
+
 void printArgs()
 {
-    cout << "参数打印完毕" << endl;
+    cout << "参数打印完毕" <<endl;
 }
 
-template <typename T, typename ... Args>
-void printArgs(T first, Args... rest)
+// typename... Args 模版参数包
+// Args... Rest 函数参数包
+// Rest... 参数包展开
+// ... 参数包展开运算符
+
+template<typename T, typename ... Args>
+void printArgs(const T& First, Args... Rest)
 {
-    cout << "参数 " << first <<endl;
-    printArgs(rest...);
+    cout << First<< " ";
+    printArgs(Rest...);
 }
 
+
+void printContactString(string& str)
+{
+    str = str+"\n";
+}
+
+template<typename T, typename ... Args>
+void printContactString(string& str, const T& First, Args... Rest)
+{
+    str += First;
+    printContactString(str, Rest...);
+}
 
 void TemplateTest::Test()
 {
 
+    // 模版实例化
     cout << maxValue(5,6) <<endl;
     cout << maxValue(3.14, 9.8) <<endl;
     string s1 = "asdf";
@@ -97,6 +130,9 @@ void TemplateTest::Test()
 
     printArgs(100, 3.14, "Hello Variadic Template", true);
 
+    string str="";
+    printContactString(str, "zxv", "werqwr", "erq");
+    cout << str;
     MyArray<int, 10> a;
     a.SetValue(1,4);
 }

@@ -48,6 +48,7 @@ T MyContiner<T>::Add(T a)
 }
 
 
+// 这就叫做模版特化
 template<>
 class MyContiner<string>
 {

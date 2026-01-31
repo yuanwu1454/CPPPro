@@ -3,6 +3,12 @@
 #include <iostream>
 using namespace std;
 
+// 基类的……	公开继承（public）	保护继承（protected）	私有继承（private）
+// 公开成员将……	成为子类的公开成员	成为子类的保护成员	成为子类的私有成员
+// 保护成员将……	成为子类的保护成员	成为子类的保护成员	成为子类的私有成员
+// 私有成员将……	对子类不可见	对子类不可见	对子类不可见
+
+
 struct NetworkPacket {
     uint16_t cmd;   // 2字节命令码
     uint32_t len;   // 4字节长度
@@ -20,6 +26,10 @@ private:
 
 
 // 私有继承std::string，复用其功能但对外隐藏
+// 外界确实无法直接调用 string构造函数，
+// string的构造函数 本身来讲 loggedString 是私有的。
+// 作为loggedString 的私有变量， loggedString当然有权限直接使用。
+// 构造函数本身不能被继承，但是子类的构造会直接调用父类的构造函数
 class LoggedString : private std::string {
 public:
     // 只暴露需要的接口，并添加日志逻辑

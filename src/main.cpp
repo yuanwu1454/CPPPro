@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include "Ptr.h"
 #include "ClassA.h"
+#include "ClassPtr.h"
 #include "MyNs.h"
 #include "ConstCastTest.h"
 #include "StaticCast.h"
@@ -24,12 +25,9 @@ using namespace std;
 // string,vector,array,pair,map,set
 // lvalues, rvalues
 // template
-// 基类的……	公开继承（public）	保护继承（protected）	私有继承（private）
-// 公开成员将……	成为子类的公开成员	成为子类的保护成员	成为子类的私有成员
-// 保护成员将……	成为子类的保护成员	成为子类的保护成员	成为子类的私有成员
-// 私有成员将……	对子类不可见	对子类不可见	对子类不可见
 //protected inheritance， private inheritance【composition 备选项】
 // 私有继承 保护继承
+// 
 
 void AddressTest();
 void ClassTest();
@@ -76,8 +74,8 @@ int main()
     // ConstCastTest::Test();
     // StaticCast::Test();
     // ReinterpretCast::Test();
-    TemplateTest::Test();
-
+    // TemplateTest::Test();
+    Person::Test();
     // cout << my_namespace::a<<endl;
     // cout << A2::k << endl;
     // cout << A2::v << endl;
