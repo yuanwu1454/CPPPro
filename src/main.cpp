@@ -8,6 +8,7 @@
 #include "ReinterpretCast.h"
 #include "TemplateTest.h"
 #include "Test.h"
+#include "FuncPtrTest.h"
 using namespace std;
 
 // ctor，destructor,copy ctor,move ctor, copy assign, move assign 
@@ -20,14 +21,14 @@ using namespace std;
 // 内存大小与对齐
 // auto,decltype,nullptr,initialize_list,tuple
 // enum, union
-// using,typdef
+// using,typedef
 // #define, const
 // string,vector,array,pair,map,set
 // lvalues, rvalues
 // template
-//protected inheritance， private inheritance【composition 备选项】
-// 私有继承 保护继承
-// 
+// func ptr,using,typedef
+// protected inheritance， private inheritance【composition 备选项】
+// callbackstd::function + std::bind 或 lambda
 
 void AddressTest();
 void ClassTest();
@@ -76,6 +77,7 @@ int main()
     // ReinterpretCast::Test();
     // TemplateTest::Test();
     Person::Test();
+    // FuncPtrTest::Test();
     // cout << my_namespace::a<<endl;
     // cout << A2::k << endl;
     // cout << A2::v << endl;
