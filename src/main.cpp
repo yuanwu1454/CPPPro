@@ -9,6 +9,7 @@
 #include "TemplateTest.h"
 #include "Test.h"
 #include "FuncPtrTest.h"
+#include "LamdaTest.h"
 using namespace std;
 
 // ctor，destructor,copy ctor,move ctor, copy assign, move assign 
@@ -29,6 +30,7 @@ using namespace std;
 // func ptr,using,typedef
 // protected inheritance， private inheritance【composition 备选项】
 // callbackstd::function + std::bind 或 lambda
+// operator() 
 
 void AddressTest();
 void ClassTest();
@@ -76,8 +78,9 @@ int main()
     // StaticCast::Test();
     // ReinterpretCast::Test();
     // TemplateTest::Test();
-    Person::Test();
+    // Person::Test();
     // FuncPtrTest::Test();
+    LamdaTest::Test();
     // cout << my_namespace::a<<endl;
     // cout << A2::k << endl;
     // cout << A2::v << endl;
