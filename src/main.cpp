@@ -10,6 +10,7 @@
 #include "Test.h"
 #include "FuncPtrTest.h"
 #include "LamdaTest.h"
+#include "UnionTest.h"
 using namespace std;
 
 // ctor，destructor,copy ctor,move ctor, copy assign, move assign 
@@ -80,7 +81,8 @@ int main()
     // TemplateTest::Test();
     // Person::Test();
     // FuncPtrTest::Test();
-    LamdaTest::Test();
+    // LamdaTest::Test();
+    UnionTest::Test();
     // cout << my_namespace::a<<endl;
     // cout << A2::k << endl;
     // cout << A2::v << endl;
