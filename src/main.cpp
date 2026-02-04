@@ -11,6 +11,7 @@
 #include "FuncPtrTest.h"
 #include "LamdaTest.h"
 #include "UnionTest.h"
+#include "MutableClass.h"
 using namespace std;
 
 // ctor，destructor,copy ctor,move ctor, copy assign, move assign 
@@ -82,7 +83,8 @@ int main()
     // Person::Test();
     // FuncPtrTest::Test();
     // LamdaTest::Test();
-    UnionTest::Test();
+    // UnionTest::Test();
+    MutableClass::Test();
     // cout << my_namespace::a<<endl;
     // cout << A2::k << endl;
     // cout << A2::v << endl;
