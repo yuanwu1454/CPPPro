@@ -20,7 +20,7 @@ using namespace std;
 // new,delete, malloc, free
 // virtual,override, volatile, using,final
 // namespace, class, struct
-// volatile, const, restrict, mutable, static, register, thread_local 
+// volatile, const, restrict, mutable, static, register【基本弃用】, thread_local 
 // 内存大小与对齐
 // auto,decltype,nullptr,initialize_list,tuple
 // enum, union
@@ -32,7 +32,8 @@ using namespace std;
 // func ptr,using,typedef
 // protected inheritance， private inheritance【composition 备选项】
 // callbackstd::function + std::bind 或 lambda
-// operator() 
+// operator()
+// constexpr 
 
 void AddressTest();
 void ClassTest();
