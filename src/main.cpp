@@ -1,4 +1,6 @@
 ﻿#include <iostream>
+
+#include "AutoClassTest.h"
 #include "Ptr.h"
 #include "ClassA.h"
 #include "ClassPtr.h"
@@ -33,7 +35,7 @@ using namespace std;
 // protected inheritance， private inheritance【composition 备选项】
 // callbackstd::function + std::bind 或 lambda
 // operator()
-// constexpr 
+// constexpr, iterator,const_iterator
 
 void AddressTest();
 void ClassTest();
@@ -41,37 +43,6 @@ void ExeFunc(void* func);
 
 int global_num = 10;
 int global_num2 = 100;
-class Base {
-public:
-    Base() { cout << "Base 构造函数" << endl; }
-    ~Base() { cout << "Base 析构函数" << endl; }
-};
-
-class Derived : public Base {
-public:
-    Derived() {
-        cout << "Derived 构造函数" << endl; 
-    }
-    ~Derived() { 
-        cout << "Derived 析构函数" << endl; 
-    }
-};
-
-class DDerived : public Derived {
-public:
-    DDerived() {
-        cout << "DDerived 构造函数" << endl;
-    }
-    ~DDerived() {
-        cout << "DDerived 析构函数" << endl;
-    }
-};
-namespace A2 {
-    extern int v;
-    extern int p;
-    int k = 4;
-}
-
 extern int a;
 //static 关键字 
 int main()
@@ -85,7 +56,8 @@ int main()
     // FuncPtrTest::Test();
     // LamdaTest::Test();
     // UnionTest::Test();
-    MutableClass::Test();
+    // MutableClass::Test();
+    AutoClassTest::Test();
     // cout << my_namespace::a<<endl;
     // cout << A2::k << endl;
     // cout << A2::v << endl;
