@@ -18,17 +18,14 @@ using namespace  std;
 // C++ 中所有类型推导（auto/decltype/ 模板类型推导）都是编译期行为，这是 C++ 静态类型的本质决定的。
 
 
-
 template<typename T, typename U>
 auto add(T a, U b)->decltype(a+b)
 {
-    return a+b;
+    return a+b;   
 }
-
 string get_str() {
     return "hello decltype";
 }
-
 
 void Decltype::Test()
 {

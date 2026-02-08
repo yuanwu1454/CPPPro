@@ -6,6 +6,7 @@
 #include "ClassPtr.h"
 #include "MyNs.h"
 #include "ConstCastTest.h"
+#include "ConstExprClass.h"
 #include "Decltype.h"
 #include "StaticCast.h"
 #include "ReinterpretCast.h"
@@ -59,7 +60,8 @@ int main()
     // UnionTest::Test();
     // MutableClass::Test();
     // AutoClassTest::Test();
-    Decltype::Test();
+    // Decltype::Test();
+    ConstExprClass::Test();
     // cout << my_namespace::a<<endl;
     // cout << A2::k << endl;
     // cout << A2::v << endl;
