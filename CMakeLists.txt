@@ -17,10 +17,17 @@ file(GLOB_RECURSE SRC_FILES
     ${CMAKE_SOURCE_DIR}/src/*.cpp
 )
 
+
+# 递归查找src目录下所有.md文件（包含所有子目录）
+file(GLOB_RECURSE MD_FILES
+	${CMAKE_SOURCE_DIR}/book/*.md
+)
+
+
 file(GLOB_RECURSE HEADER_FILES ${CMAKE_SOURCE_DIR}/include/*.h ${CMAKE_SOURCE_DIR}/include/*.hpp)
 
 # 添加可执行文件（你的主程序）
-add_executable(cpp_demo ${SRC_FILES} ${HEADER_FILES})
+add_executable(cpp_demo ${SRC_FILES} ${HEADER_FILES} ${MD_FILES})
 
 # 可选：添加头文件目录（如果有include目录）
 include_directories(${CMAKE_SOURCE_DIR}/include ${CMAKE_SOURCE_DIR}/src)

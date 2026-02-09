@@ -16,6 +16,7 @@
 #include "LamdaTest.h"
 #include "UnionTest.h"
 #include "MutableClass.h"
+#include "VarTest.h"
 using namespace std;
 
 // ctor，destructor,copy ctor,move ctor, copy assign, move assign 
@@ -61,7 +62,8 @@ int main()
     // MutableClass::Test();
     // AutoClassTest::Test();
     // Decltype::Test();
-    ConstExprClass::Test();
+    // ConstExprClass::Test();
+    VarTest::Test();
     // cout << my_namespace::a<<endl;
     // cout << A2::k << endl;
     // cout << A2::v << endl;
