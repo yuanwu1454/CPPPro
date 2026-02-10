@@ -17,6 +17,7 @@
 #include "UnionTest.h"
 #include "MutableClass.h"
 #include "VarTest.h"
+#include "UE4/Delegate.h"
 using namespace std;
 
 // ctor，destructor,copy ctor,move ctor, copy assign, move assign 
@@ -63,7 +64,8 @@ int main()
     // AutoClassTest::Test();
     // Decltype::Test();
     // ConstExprClass::Test();
-    VarTest::Test();
+    // VarTest::Test();
+    Delegate::Test();
     // cout << my_namespace::a<<endl;
     // cout << A2::k << endl;
     // cout << A2::v << endl;
