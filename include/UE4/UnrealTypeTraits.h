@@ -29,3 +29,13 @@ struct X<int, int>
     int b;
     int c;
 };
+
+template <typename T>
+struct TIsPODType 
+{ 
+    enum { Value = __is_pod(T) };
+};
+
+template <typename T> struct TRemoveReference      { typedef T Type; };
+template <typename T> struct TRemoveReference<T& > { typedef T Type; };
+template <typename T> struct TRemoveReference<T&&> { typedef T Type; };

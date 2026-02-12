@@ -102,3 +102,69 @@ namespace my_namespace
 }
 
 
+//
+// template<bool bPredict, typename Result=void>
+// class TEnableIf{};
+//
+// template<typename Result>
+// class TEnableIf<true, Result>{
+// public:
+//     typedef Result Type;
+// };
+//
+// template<typename Result>
+// class TEnableIf<false, Result>{
+// };
+//
+//
+// template<typename T>
+// struct IsInterger{ enum{Value = false};};
+//
+//
+// template<> struct IsInterger <int> {enum{Value = true};};
+//
+// template<typename T>
+// typename TEnableIf<IsInterger<T>::Value, void>::Type
+// PrintInteger(const T& value)
+// {
+//     std::cout << value << std::endl;
+// }
+//
+// template<typename A, typename B> struct IsSame{enum{Value = false};};
+// template<typename T> struct IsSame<T, T>{enum{Value = true};};
+//
+// template<typename T>
+// struct TTypeWrap;
+//
+// template<typename T>
+// struct TUnTypeWrap
+// {
+//     typedef T Result;
+// };
+//
+// template<typename T>
+// struct TUnTypeWrap<TTypeWrap<T>>
+// {
+//     typedef T Result;
+// };
+//
+// template<typename T>
+// struct A4
+// {
+//     typedef  typename TUnTypeWrap<T>::Result RealType;
+//     void f(RealType t)
+//     {
+//         std::cout<<"normal" << t <<std::endl;
+//     }
+// };
+//
+// template<>
+// struct A4<int>
+// {
+//     void f(int t)
+//     {
+//         std::cout << "int" << t <<endl;
+//         A4<TTypeWrap<int>> a;
+//         a.f(t);
+//     }    
+// };

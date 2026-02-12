@@ -40,7 +40,6 @@ using namespace std;
 // callbackstd::function + std::bind 或 lambda
 // operator()
 // constexpr, iterator,const_iterator
-
 void AddressTest();
 void ClassTest();
 void ExeFunc(void* func);
@@ -88,6 +87,8 @@ int main()
 
     //Ptr::AddressTest1();
     //AddressTest();
+    // PrintInteger(5);
+    
     return 0;
 }
 

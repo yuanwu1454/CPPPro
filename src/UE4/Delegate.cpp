@@ -4,6 +4,8 @@
 #include "UE4/UnrealTypeTraits.h"
 #include "UE4/TEnableIfUse.h"
 
+class A{};
+
 void Delegate::Test()
 {
     // TThing<int> TempThing;
@@ -22,4 +24,7 @@ void Delegate::Test()
     
     int32* NullPtr = nullptr;
     PrintValue(NullPtr); // 输出：空指针
+    
+    const int& x = Num;
+    TRemoveReference<const int&>::Type a = 4;
 }
