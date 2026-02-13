@@ -53,8 +53,8 @@ struct TIsInteger
     enum { Value = false };
 };
 // 特化：int32/int64 为整数类型
-template <> struct TIsInteger<int32> { enum { Value = true }; };
-template <> struct TIsInteger<int64> { enum { Value = true }; };
+template <> struct TIsInteger<int> { enum { Value = true }; };
+template <> struct TIsInteger<long> { enum { Value = true }; };
 
 
 
