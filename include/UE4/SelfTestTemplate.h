@@ -168,11 +168,6 @@ struct TIsSigned<const T>
     static constexpr  bool Value = TIsSigned<T>::Value;
 };
 
-template<typename T>
-struct TIsSigned<const T>
-{
-    static constexpr  bool Value = TIsSigned<T>::Value;
-};
 
 template<typename T>
 struct TIsSigned<volatile T>
@@ -185,3 +180,53 @@ struct TIsSigned<const volatile T>
 {
     static constexpr  bool Value = TIsSigned<T>::Value;
 };
+
+// TAnd
+template<typename... Type>
+struct TAnd;
+
+template<bool LHS, typename ...RHS>
+struct TAndValue
+{
+    static bool constexpr Value = TAnd<RHS...>::Value;
+};
+
+template<typename ...RHS>
+struct TAndValue<false, RHS...>
+{
+    static bool constexpr Value = false;
+};
+
+template<typename LHS, typename... RHS>
+struct TAnd<LHS, RHS...>:TAndValue<LHS::Value, RHS...>
+{
+};
+
+template<>
+struct TAnd<>
+{
+    static bool constexpr Value = true;
+};
+
+// 定义几个测试类型（带 value 静态常量）
+struct TrueType { static constexpr bool Value = true; };
+struct FalseType { static constexpr bool Value = false; };
+
+
+
+// 外层类（可能作为模板参数传入）
+struct MyClass {
+    // 嵌套模板类（核心：MyNestedTemplate 是 MyClass 的嵌套模板）
+    template <typename U>
+    struct MyNestedTemplate {
+        U value;
+    };
+};
+
+template<typename T>
+void test()
+{
+    typename T::template MyNestedTemplate<int> obj;
+    obj.value = 3;
+    std::cout << obj.value << std::endl;
+}

@@ -90,5 +90,4 @@ void UnionTest::Test()
     cout << "MyType data size value is " << sizeof(MyType::data) << endl;    
     cout << "MyType2 align value is " << alignof(MyType2) << endl;
     cout << "MyType2 size value is " << sizeof(MyType2) << endl;
-    
 }

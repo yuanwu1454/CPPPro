@@ -37,4 +37,16 @@ void Delegate::Test()
     {
         std::cout<< TIsPodType<int>::Value << std::endl;
     }
+
+    {
+        // 测试1：空参数 → true
+        std::cout << TAnd<>::Value << std::endl; // 输出 1
+        std::cout << TAnd<TrueType, FalseType>::Value << std::endl;
+        std::cout << TAnd<TrueType, TrueType>::Value << std::endl;
+        std::cout << TAnd<TrueType, TrueType, FalseType, TrueType>::Value << std::endl;
+    }
+
+    {
+        test<MyClass>(); // 输出 100
+    }
 }
