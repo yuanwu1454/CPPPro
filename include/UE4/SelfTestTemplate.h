@@ -1,5 +1,7 @@
 ﻿#pragma once
 #include <iostream>
+#include <type_traits>
+#include <vector>
 
 // #include "UnrealTypeTraits.h"
 
@@ -125,13 +127,11 @@ struct A<int>
 };
 
 // TIsPodType
-
 template<typename T>
 struct TIsPodType
 {
-    static constexpr bool Value = __is_pod(T) ;
+    static constexpr bool Value = __is_pod(T);
 };
-
 
 // TChooseClass
 template<bool bPredict, typename TrueClass, typename FalseClass>
@@ -182,22 +182,25 @@ struct TIsSigned<const volatile T>
 };
 
 // TAnd
-template<typename... Type>
+
+template <typename ...Args>
 struct TAnd;
 
 template<bool LHS, typename ...RHS>
 struct TAndValue
 {
-    static bool constexpr Value = TAnd<RHS...>::Value;
+    static constexpr bool Value = TAnd<RHS...>::Value;    
 };
+
 
 template<typename ...RHS>
 struct TAndValue<false, RHS...>
 {
-    static bool constexpr Value = false;
+    static constexpr bool Value = false;
 };
 
-template<typename LHS, typename... RHS>
+
+template<typename LHS, typename ...RHS>
 struct TAnd<LHS, RHS...>:TAndValue<LHS::Value, RHS...>
 {
 };
@@ -205,8 +208,9 @@ struct TAnd<LHS, RHS...>:TAndValue<LHS::Value, RHS...>
 template<>
 struct TAnd<>
 {
-    static bool constexpr Value = true;
+    static constexpr bool Value = false;
 };
+
 
 // 定义几个测试类型（带 value 静态常量）
 struct TrueType { static constexpr bool Value = true; };
@@ -229,4 +233,44 @@ void test()
     typename T::template MyNestedTemplate<int> obj;
     obj.value = 3;
     std::cout << obj.value << std::endl;
+}
+
+// 默认推导，也就是传空时
+template<typename T=std::string>
+void f(T value="")
+{
+    std::cout << value<< std::endl;
+}
+
+
+// common_type_t
+
+// 一、std::common_type的核心定义
+// std::common_type是模板类，核心作用是推导一组类型经过隐式转换后能兼容的公共类型，其推导规则贴合 C++ 的隐式类型转换规则：
+// 对数值类型：按 “提升规则” 推导（如char+int→int，int+double→double）；
+// 对自定义类型：可通过特化std::common_type自定义推导规则；
+// 支持 1 个或多个类型参数（C++17 起支持任意数量，C++11/14 至少需 2 个）。
+
+// 推导两个参数的公共返回类型
+template <typename T, typename U>
+std::common_type_t<T, U> generic_max(T a, U b) {
+    return (a > b) ? a : b;
+}
+
+template <typename... Ts>
+std::vector<std::common_type_t<Ts...>> make_vector(Ts&&... args) {
+    return {std::forward<Ts>(args)...};
+}
+
+
+// std::decay是<type_traits>头文件中的模板类，其作用是按照 C++ 函数参数传递的规则对类型进行 “退化”，具体包含以下 3 个核心行为：
+// 移除类型的引用属性（左值引用 / 右值引用都被移除）；
+// 移除类型的const/volatile 限定符；
+// 将数组类型退化为对应的指针类型，将函数类型退化为函数指针类型。
+
+template <typename T>
+void func(T&& arg) {  // 万能引用
+    // 无论传入什么类型，都退化到基础类型
+    using RawType = std::decay_t<T>;
+    RawType copy = arg;  // 安全拷贝，避免引用/数组等问题
 }

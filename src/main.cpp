@@ -40,6 +40,7 @@ using namespace std;
 // callbackstd::function + std::bind 或 lambda
 // operator()
 // constexpr, iterator,const_iterator
+// decay_t common_type_t
 void AddressTest();
 void ClassTest();
 void ExeFunc(void* func);

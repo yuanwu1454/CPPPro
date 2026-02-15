@@ -39,7 +39,6 @@ void Delegate::Test()
     }
 
     {
-        // 测试1：空参数 → true
         std::cout << TAnd<>::Value << std::endl; // 输出 1
         std::cout << TAnd<TrueType, FalseType>::Value << std::endl;
         std::cout << TAnd<TrueType, TrueType>::Value << std::endl;
@@ -48,5 +47,31 @@ void Delegate::Test()
 
     {
         test<MyClass>(); // 输出 100
+    }
+
+    {
+        f(1);
+        f();
+    }
+
+    {
+        int x = 10;
+        double y = 3.14;
+        // 返回值类型是double，符合隐式转换规则
+        auto res = generic_max(x, y);
+        std::cout << "res = " << res << " value : " << typeid(res).name() << std::endl;
+    }
+
+    {
+        // 元素类型推导为double（int + float + double的公共类型）
+        auto vec = make_vector(1, 2.5f, 3.14);
+        for (auto v : vec) {
+            std::cout << v << " ";  // 输出：1 2.5 3.14
+        }
+    }
+
+    {
+        // auto p = std::make_pair(a, std::ref(b));  
+        // 底层实现等价于：std::pair<std::decay_t<decltype(a)>, std::decay_t<decltype(std::ref(b))>>
     }
 }
