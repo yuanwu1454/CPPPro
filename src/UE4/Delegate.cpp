@@ -6,6 +6,7 @@
 
 #ifdef USE_SELF_TEST
 #include "UE4/SelfTestTemplate.h"
+#include "UE4/Stack.h"
 #else
 #include "UE4/TypeWrapper.h"
 #include "UE4/UnrealTypeTraits.h"
@@ -73,5 +74,17 @@ void Delegate::Test()
     {
         // auto p = std::make_pair(a, std::ref(b));  
         // 底层实现等价于：std::pair<std::decay_t<decltype(a)>, std::decay_t<decltype(std::ref(b))>>
+    }
+
+    {
+        // 1. 显式指定模板参数，声明对象
+        ValueWithComment<int> vc1;
+        vc1.value = 42;
+        vc1.comment = "initial value (int)";
+        std::cout << "vc1: " << vc1.value << " - " << vc1.comment << std::endl;
+
+        // 2. 也可以用大括号直接初始化（聚合类特性）
+        ValueWithComment<double> vc2{3.14, "pi (double)"};
+        std::cout << "vc2: " << vc2.value << " - " << vc2.comment << std::endl;
     }
 }
