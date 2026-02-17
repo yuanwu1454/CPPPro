@@ -257,10 +257,10 @@ std::common_type_t<T, U> generic_max(T a, U b) {
     return (a > b) ? a : b;
 }
 
-template <typename... Ts>
-std::vector<std::common_type_t<Ts...>> make_vector(Ts&&... args) {
-    return {std::forward<Ts>(args)...};
-}
+// template <typename... Ts>
+// std::vector<std::common_type_t<Ts...>> make_vector(Ts&&... args) {
+//     return {std::forward<Ts>(args)...};
+// }
 
 
 // std::decay是<type_traits>头文件中的模板类，其作用是按照 C++ 函数参数传递的规则对类型进行 “退化”，具体包含以下 3 个核心行为：

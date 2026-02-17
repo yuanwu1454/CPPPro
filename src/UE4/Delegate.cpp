@@ -65,10 +65,10 @@ void Delegate::Test()
 
     {
         // 元素类型推导为double（int + float + double的公共类型）
-        auto vec = make_vector(1, 2.5f, 3.14);
-        for (auto v : vec) {
-            std::cout << v << " ";  // 输出：1 2.5 3.14
-        }
+        // auto vec = make_vector(1, 2.5f, 3.14);
+        // for (auto v : vec) {
+        //     std::cout << v << " ";  // 输出：1 2.5 3.14
+        // }
     }
 
     {
@@ -77,14 +77,46 @@ void Delegate::Test()
     }
 
     {
-        // 1. 显式指定模板参数，声明对象
         ValueWithComment<int> vc1;
         vc1.value = 42;
         vc1.comment = "initial value (int)";
         std::cout << "vc1: " << vc1.value << " - " << vc1.comment << std::endl;
-
-        // 2. 也可以用大括号直接初始化（聚合类特性）
+        
         ValueWithComment<double> vc2{3.14, "pi (double)"};
         std::cout << "vc2: " << vc2.value << " - " << vc2.comment << std::endl;
+    }
+
+    {
+        using IntStack=Stack<int>;
+        IntStack intStackInst;
+        intStackInst.push(6);
+        // std::cout << intStackInst.top() <<endl;
+        using StringStack=Stack<std::string>;
+        StringStack StringStackInst;
+        StringStackInst.push("zxcv");
+        // StringStackInst.printOn(std::cout);
+        std::cout << StringStackInst;
+        std::cout << intStackInst;
+    }
+
+    {
+        printSize(MyString{}); // 编译通过，输出 Size: 5
+        // std::cout << std::true_type::value<<endl;
+        // std::cout << std::false_type::value<<endl;
+        // printSize(NoSizeType{}); // 触发断言：error: static assertion failed: T must have size() member function!
+    }
+
+    {
+        Stack<int*> ptrStack; // stack of pointers (special implementation)
+        ptrStack.push(new int{42});
+        std::cout << *ptrStack.top();
+        delete ptrStack.pop();
+    }
+
+    {
+        printMul(1,"xzcv",4);
+    }
+    {
+        printFold("123",2,3.5f, 'a');
     }
 }
