@@ -166,8 +166,8 @@ void printMul(T first, Args... args)
     }
 }
 
-template<typename... Types>
-void printFold (Types const&... args)
-{
-    (std::cout << ... << args) << '\n';
-}
+// template<typename... Types>
+// void printFold (Types const&... args)
+// {
+//     (std::cout << ... << args) << '\n';
+// }

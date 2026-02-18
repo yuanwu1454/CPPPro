@@ -1,12 +1,13 @@
 #include "UE4/Delegate.h"
 #include <iostream>
-
+#include <list>
 #include "Test.h"
 #define USE_SELF_TEST
 
 #ifdef USE_SELF_TEST
 #include "UE4/SelfTestTemplate.h"
 #include "UE4/Stack.h"
+#include "UE4/Chapter5.h"
 #else
 #include "UE4/TypeWrapper.h"
 #include "UE4/UnrealTypeTraits.h"
@@ -117,6 +118,40 @@ void Delegate::Test()
         printMul(1,"xzcv",4);
     }
     {
-        printFold("123",2,3.5f, 'a');
+        // printFold("123",2,3.5f, 'a');
+    }
+
+    {
+        std::vector<int> vec = {1, 2, 3};
+        printFirstElement(vec); // 输出 1
+    }
+    {
+        Calculator c;
+        std::cout << c.add(2,3) <<std::endl;
+        Calculator::Nested<int> t{6};
+        t.print();
+        Calculator::Nested<std::string> str("zxvxcv123132");
+        str.print();
+    }
+    {
+        MyCollection<int, std::vector> vecCol1;
+        vecCol1.add(5);
+        vecCol1.add(6);
+        vecCol1.print();
+
+        // 使用 list 作为底层容器
+        MyCollection<int, std::list> listColl;
+        listColl.add(3);
+        listColl.add(4);
+        listColl.print(); // 输出 3 4
+    }
+    {
+        std::cout << getDefaultValue<int>() << std::endl;    // 输出 0
+        std::cout << getDefaultValue<double>() << std::endl; // 输出 0
+        std::cout << (getDefaultValue<int*>() == nullptr) << std::endl; // 输出 1（true）
+    }
+    {
+        printString("xzvc");
+        printString("xzvcsaasfdasf");
     }
 }

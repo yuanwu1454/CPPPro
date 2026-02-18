@@ -41,6 +41,7 @@ using namespace std;
 // operator()
 // constexpr, iterator,const_iterator
 // decay_t common_type_t
+// typename 
 void AddressTest();
 void ClassTest();
 void ExeFunc(void* func);
