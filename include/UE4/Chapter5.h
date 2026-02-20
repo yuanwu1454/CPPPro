@@ -2,64 +2,112 @@
 #include <iostream>
 #include <vector>
 
-
-template <typename T>
-void printFirstElement(T& container) {
-    // 错误写法：T::iterator 是依赖于 T 的嵌套类型，必须加 typename
-    // T::iterator it = container.begin();
-    
-    // 正确写法：用 typename 告诉编译器 T::iterator 是一个类型
-    typename T::iterator it = container.begin();
-    std::cout <<std::endl << "XXXX" << *it << std::endl;
+template<typename T>
+void printFirstElement(T container)
+{
+    typename T::iterator x =  container.begin();
+    std::cout << *x <<std::endl;
 }
 
-
-class Calculator
+struct Calculator
 {
-public:
     template<typename T>
-    T add(T a, T b)
-    {
-        return a+b;
-    }
+    T add(T a, T b){return a+b;}
+
     template<typename U>
     class Nested
     {
     public:
-        U Value;
-        Nested(U v):Value(v){}
-        void print(){std::cout<<Value<<std::endl;}
+        Nested(U v):value(v){}
+        U value;
+        void print()
+        {
+            std::cout << value <<std::endl;
+        }
     };
 };
+
 
 template<typename T, template<typename Elem, typename Alloc = std::allocator<Elem>> class Container>
 struct MyCollection
 {
-    Container<T> data;
-public:
-    void add(const T& val){data.push_back(val);}
+    Container<T> container;
+    void add(T val)
+    {
+        container.push_back(val);
+    }
     void print()
     {
-        for(const auto& ele : data)
+        for(auto& ele: container)
         {
-            std::cout<< ele << " ";
+            std::cout << ele << " ";
         }
-        std::cout<< std::endl;
+        std::cout << endl;
     }
 };
 
-//4. 零初始化（Zero Initialization）
-// 模板中处理内置类型（如 int、double）时，确保未初始化的变量被初始化为 0（而非随机值），避免未定义行为。
+
+// 基础模板（单原料模具）
+template<typename X>
+class XContainer {
+public:
+    X value;
+    XContainer(X v) : value(v) {}
+};
+
+// 双原料模具
+template<typename U, typename X>
+class UContainer {
+public:
+    U u_val;
+    X x_val;
+    UContainer(U u, X x) : u_val(u), x_val(x) {}
+    void print() {
+        std::cout << "U" << u_val << " X" << x_val.value << std::endl;
+    }
+};
+
+
+template<typename T, template<typename U, typename X> class Uc>
+class TContainer{
+public:
+    Uc<T, XContainer<float>> inner;
+    TContainer(T v1, float v2):inner(v1, XContainer<float>(v2)){};
+    void print()
+    {
+        inner.print();
+    }
+};
+
 template<typename T>
 T getDefaultValue()
 {
-    T val{};
-    return val;
+    T a = T{};
+    return a;
+}
+
+// const  // 只读：保证函数不会修改数组内容，更安全
+// T      // 数组元素类型（比如char）
+// (&val) // val是一个引用（不是指针！）
+// [N]    // 引用的对象是“长度为N的T类型数组”
+template<typename T, size_t N>
+void printString(const T (&val)[N])
+{
+    std::cout<<val << N <<endl;
 }
 
 
-template<typename T, std::size_t N>
-void printString(const T(&str)[N])
-{
-    std::cout << "String: " << str << ", Length: " << N-1 << std::endl;
+// 接收“长度为5的int数组”的引用（固定长度）
+template<typename T, size_t N>
+void printAnyArray(const T (&arr)[N]) {
+    cout << " size " << sizeof(arr)/sizeof(arr[0]) << " sizeN " << N  <<" type " << typeid(T).name() << endl;
+    for (const auto& elem : arr) {
+        cout << &elem << " ";
+    }
+    cout << endl;
+}
+
+// 指针的引用：修改外部指针的指向
+inline void allocateInt(int*& ptr) {
+    ptr = new int(100); // 动态分配内存，ptr指向新地址
 }

@@ -56,6 +56,19 @@ void AutoClassTest::Test()
         auto x = {1,2,3,4,5};
     }
     {
+
+        // 核心区别：
+        // 顶层 const：修饰变量 / 对象本身，“自己不能改”，赋值 / 推导时可忽略；
+        // 底层 const：修饰指针 / 引用指向的内容，“指向的东西不能改”，赋值 / 推导时必须保留；
+        // 关键场景：
+        // 指针：T* const 是顶层，const T* 是底层；
+        // 引用：只有底层 const（const T&），无顶层 const；
+        // 赋值：顶层 const 不影响兼容，底层 const 要求 “const 属性向下兼容（非 const→const）”；
+        // 推导：顶层 const 被忽略，底层 const 被保留；
+        // 记忆口诀：
+        // 看 const 的位置：const 在 * 左边 → 底层 const（管内容）；const 在 * 右边 → 顶层 const（管指针）；
+        // 无指针 / 引用时，const 都是顶层 const（比如 const int a）。
+
         const int a = 10;
         auto b = a; // b是int（丢弃顶层const，因为b是新变量，可修改）
 

@@ -154,15 +154,13 @@ struct NoSizeType {};
 //     std::cout << arg<<std::endl;
 // }
 
-template<typename T, typename ...Args>
-void printMul(T first, Args... args)
+template<typename T, typename... Args>
+void printMul(T val, Args... args)
 {
-    std::cout << first<<" ";
-    // if (sizeof... (args) > 0 ) error
-    // 用运行时的 if 判断代替了编译期的递归终止函数，导致参数包为空时编译器找不到匹配的函数；
-     if constexpr (sizeof...(args) > 0)
+    std::cout << val <<" ";
+    if constexpr (sizeof...(args) > 0)
     {
-        printMul(args...);        
+        printMul(args...);
     }
 }
 
