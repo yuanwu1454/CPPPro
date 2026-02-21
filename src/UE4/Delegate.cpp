@@ -2,6 +2,7 @@
 #include <iostream>
 #include <list>
 #include "Test.h"
+#include "UE4/Chapter6.h"
 #define USE_SELF_TEST
 
 #ifdef USE_SELF_TEST
@@ -208,6 +209,9 @@ void Delegate::Test()
         cout << HasSizeFunc<string>::value << endl;       // 1
     
         // int Ã»ÓÐ size() ¡ú false
-        cout << HasSizeFunc<int>::value << endl;          /
+        cout << HasSizeFunc<int>::value << endl;         
     }
+
+
+    Chapter6::Test();
 }
