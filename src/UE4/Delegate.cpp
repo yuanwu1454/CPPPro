@@ -3,6 +3,7 @@
 #include <list>
 #include "Test.h"
 #include "UE4/Chapter6.h"
+#include "UE4/Chapter7.h"
 #define USE_SELF_TEST
 
 #ifdef USE_SELF_TEST
@@ -123,95 +124,8 @@ void Delegate::Test()
         // printFold("123",2,3.5f, 'a');
     }
 
-    {
-        std::vector<int> vec = {1, 2, 3};
-        printFirstElement(vec); // 输出 1
-    }
-    {
-        Calculator c;
-        std::cout << c.add(2,3) <<std::endl;
-        Calculator::Nested<int> t{6};
-        t.print();
-        Calculator::Nested<std::string> str("zxvxcv123132");
-        str.print();
-    }
-    {
-        MyCollection<int, std::vector> vecCol1;
-        vecCol1.add(5);
-        vecCol1.add(6);
-        vecCol1.print();
-        // 使用 list 作为底层容器
-        MyCollection<int, std::list> listColl;
-        listColl.add(3);
-        listColl.add(4);
-        listColl.print(); // 输出 3 4
-    }
-    {
-        std::cout << getDefaultValue<int>() << std::endl;    // 输出 0
-        std::cout << getDefaultValue<double>() << std::endl; // 输出 0
-        std::cout << (getDefaultValue<int*>() == nullptr) << std::endl; // 输出 1（true）
-    }
-    {
-        printString("xzvc");
-        printString("xzvcsaasfdasf");
-    }
-    {
-        int arr1[5] = {1,2,3,4,5};
-        printAnyArray(arr1);
-        string sarr[2] = {"apple", "banana"};
-        printAnyArray(sarr);
-        char str[6] = "hello";
-        printAnyArray(str);
-
-        int arr2D[3][4] = {{1,2,3,4}, {5,6,7,8}, {9,10,11,12}};
-        printAnyArray(arr2D); 
-    }
-
-    {
-        int* ptr = nullptr;
-        allocateInt(ptr);
-        std::cout << *ptr <<std::endl;
-    }
-
-    {
-        // 推导 const MyType 的 getVal() 返回类型（和非const版本一致，但逻辑不同）
-        using ConstRet = decltype(declval<const MyType>().getVal());
-        static_assert(is_same_v<ConstRet, int>, "类型不匹配");
-    
-        // 推导 MyType& 的 val 成员类型
-        using RefValT = decltype(declval<MyType&>().val);
-        static_assert(is_same_v<RefValT, int>, "类型不匹配");
-    }
-
-    {
-        // 推导成员类型 DataType
-        // 场景1：推导嵌套类型 → 直接用 类名::嵌套类型，无需declval
-        using DataT = AbstractClass::DataType;
-        static_assert(is_same_v<DataT, vector<int>>, "嵌套类型推导错误");
-    
-        // 推导成员变量 max_val 的类型
-        using MaxValT = decltype(declval<AbstractClass>().max_val);
-        static_assert(is_same_v<MaxValT, const int>, "类型不匹配");
-    }
-
-    {
-        // 推导 getName() 的返回类型
-        using NameRet = decltype(declval<NoDefaultCtor>().getName());
-        static_assert(is_same_v<NameRet, string>, "类型不匹配"); // 编译期断言
-    
-        // 推导 add(int, int) 的返回类型
-        using AddRet = decltype(declval<NoDefaultCtor>().add(0, 0));
-        static_assert(is_same_v<AddRet, int>, "类型不匹配");
-    }
-    {
-        // vector 和 string 都有 size()，返回 size_t → true
-        cout << HasSizeFunc<vector<int>>::value << endl;  // 1
-        cout << HasSizeFunc<string>::value << endl;       // 1
-    
-        // int 没有 size() → false
-        cout << HasSizeFunc<int>::value << endl;         
-    }
-
-
+    Chapter5::Test();
+    DeclvalSpace::Test();
     Chapter6::Test();
+    Chapter7::Test();
 }
