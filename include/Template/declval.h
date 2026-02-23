@@ -20,14 +20,18 @@ namespace DeclvalSpace
     template<typename T>
     struct HasSizeFunc
     {
+    private:
         template<typename U>
-        static true_type test(decltype(declval<U>().size())*);
-
+        static true_type test(decltype(&U::size));
+        // 这样写也可以？
+        // static true_type test(decltype(declval<U>().size())*);
+        
         template<typename U>
-        static false_type test(...);        
-
-        constexpr static bool value=decltype(test<T>(nullptr))::value;
+        static false_type test(...);
+    public:
+        constexpr static bool Value = decltype(test<T>(nullptr))::value;
     };
+    
 
     // 无默认构造的类型
     struct NoDefaultCtor {
@@ -41,41 +45,36 @@ namespace DeclvalSpace
     {
         {
             // test MyType getVal const 方法的返回类型是否一致
-            using retType = decltype(std::declval<const MyType>().getVal());
-            static_assert(std::is_same_v<retType, int>, "ret type is not same");
+            using type = decltype(declval<MyType&>().getVal());
+            static_assert(std::is_same_v<type, int>, "type is not int");
             // test MyType getVal 方法的返回类型是否一致
-            using retType = decltype(std::declval<MyType&>().getVal());
-            static_assert(std::is_same_v<retType, int>, "ret type is not same");
+            using type = decltype(declval<const MyType>().getVal());
+            static_assert(std::is_same_v<type, int>, "type is not int");
         }
 
         {
             // 推导成员类型 DataType
             // 场景1：推导嵌套类型 → 直接用 类名::嵌套类型，无需declval
-
-            using DataT = AbstractClass::DataType;
-            static_assert(is_same_v<DataT, vector<int>>, "嵌套类型推导错误");
+            using DataType = AbstractClass::DataType;
+            static_assert(std::is_same_v<DataType, vector<int>>, "not same");
     
             // 推导成员变量 max_val 的类型
-            using MaxValT = decltype(declval<AbstractClass>().max_val);
-            static_assert(is_same_v<MaxValT, const int>, "类型不匹配");
+            using MaxValType = decltype(declval<AbstractClass>().max_val);
+            static_assert(std::is_same_v<MaxValType, const int>, "not same");
         }
+        
 
         {
             // 推导 getName() 的返回类型
-            using NameRet = decltype(declval<NoDefaultCtor>().getName());
-            static_assert(is_same_v<NameRet, string>, "类型不匹配"); // 编译期断言
-    
+            using MaxValType = decltype(declval<NoDefaultCtor>().getName());
             // 推导 add(int, int) 的返回类型
-            using AddRet = decltype(declval<NoDefaultCtor>().add(0,0));
-            static_assert(is_same_v<AddRet, int>, "类型不匹配");
+            using MaxValType2 = decltype(declval<NoDefaultCtor>().add(1,1));
         }
         {
             // vector 和 string 都有 size()，返回 size_t → true
-            cout << HasSizeFunc<vector<int>>::value << endl;  // 1
-            cout << HasSizeFunc<string>::value << endl;       // 1
-    
+            std::cout << HasSizeFunc<vector<int>>::Value;
             // int 没有 size() → false
-            cout << HasSizeFunc<int>::value << endl;         
+            std::cout << HasSizeFunc<int>::Value;
         }
     }
 }

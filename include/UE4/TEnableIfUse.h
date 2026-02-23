@@ -3,19 +3,18 @@
 
 #include "UE4/TEnableIf.h"
 #include <iostream>
-// 第一步：定义判断「是否为指针类型」的 trait
-template <typename T>
+template<typename T>
 struct TIsPointer
 {
-    enum { Value = false };
-};
-// 特化：任意 T* 都是指针类型
-template <typename T>
-struct TIsPointer<T*>
-{
-    enum { Value = true };
+    constexpr static bool Value = false;
 };
 
+
+template<typename T>
+struct TIsPointer<T*>
+{
+    constexpr static bool Value = true;    
+};
 
 // 第二步：重载函数，用 TEnableIf 区分
 // 重载1：非指针类型（Predicate = !TIsPointer<T>::Value）
@@ -45,17 +44,14 @@ PrintValue(T Value)
 
 // 基础使用
 
-// 第一步：定义判断「是否为整数类型」的 trait（Unreal 风格）
-template <typename T>
+template<typename >
 struct TIsInteger
 {
-    // 默认 false
-    enum { Value = false };
+    constexpr static bool Value = false;
 };
-// 特化：int32/int64 为整数类型
-template <> struct TIsInteger<int> { enum { Value = true }; };
-template <> struct TIsInteger<long> { enum { Value = true }; };
 
+template<> struct TIsInteger<int>{constexpr static bool Value = true;};
+template<> struct TIsInteger<long>{constexpr static bool Value = true;};
 
 
 // 第二步：使用 TEnableIf 限制函数

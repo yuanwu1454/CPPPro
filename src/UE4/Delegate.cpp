@@ -2,6 +2,7 @@
 #include <iostream>
 #include <list>
 #include "Test.h"
+#include "Template/practice.h"
 #include "UE4/Chapter6.h"
 #include "UE4/Chapter7.h"
 #define USE_SELF_TEST
@@ -128,4 +129,5 @@ void Delegate::Test()
     DeclvalSpace::Test();
     Chapter6::Test();
     Chapter7::Test();
+    Practice::Test();
 }

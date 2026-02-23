@@ -4,11 +4,12 @@
 
 namespace Chapter5
 {
+
     template<typename T>
-    void printFirstElement(T container)
+    void printFirstElement(T t)
     {
-        typename T::iterator x =  container.begin();
-        std::cout << *x <<std::endl;
+        typename T::iterator x = t.begin();
+        std::cout <<"printFirstElement" << *x <<std::endl;
     }
 
     struct Calculator
@@ -49,29 +50,31 @@ namespace Chapter5
     };
 
 
-    // 基础模板（单原料模具）
     template<typename X>
-    class XContainer {
+    class XContainer
+    {
     public:
         X value;
-        XContainer(X v) : value(v) {}
+        XContainer(X v):value(v){};
     };
 
-    // 双原料模具
+    
     template<typename U, typename X>
-    class UContainer {
+    class UContainer
+    {
     public:
         U u_val;
         X x_val;
-        UContainer(U u, X x) : u_val(u), x_val(x) {}
-        void print() {
-            std::cout << "U" << u_val << " X" << x_val.value << std::endl;
+        UContainer(U u,X x):x_val(x),u_val(u){};
+        void print()
+        {
+            std::cout << x_val.value << u_val <<std::endl;
         }
     };
 
-
     template<typename T, template<typename U, typename X> class Uc>
-    class TContainer{
+    class TContainer
+    {
     public:
         Uc<T, XContainer<float>> inner;
         TContainer(T v1, float v2):inner(v1, XContainer<float>(v2)){};
@@ -81,11 +84,11 @@ namespace Chapter5
         }
     };
 
+
     template<typename T>
     T getDefaultValue()
     {
-        T a = T{};
-        return a;
+        return T{};
     }
 
     // const  // 只读：保证函数不会修改数组内容，更安全
@@ -101,12 +104,12 @@ namespace Chapter5
 
     // 接收“长度为5的int数组”的引用（固定长度）
     template<typename T, size_t N>
-    void printAnyArray(const T (&arr)[N]) {
+    void printAnyArray(const T (&arr)[N])
+    {
         cout << " size " << sizeof(arr)/sizeof(arr[0]) << " sizeN " << N  <<" type " << typeid(T).name() << endl;
         for (const auto& elem : arr) {
             cout << &elem << " ";
         }
-        cout << endl;
     }
 
     // 指针的引用：修改外部指针的指向
