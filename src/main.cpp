@@ -16,6 +16,7 @@
 #include "LamdaTest.h"
 #include "UnionTest.h"
 #include "MutableClass.h"
+#include "UniquePtr.h"
 #include "VarTest.h"
 #include "UE4/Delegate.h"
 using namespace std;
@@ -66,7 +67,8 @@ int main()
     // Decltype::Test();
     // ConstExprClass::Test();
     // VarTest::Test();
-    Delegate::Test();
+    // Delegate::Test();
+    UniquePtrSpace::Test();
     // cout << my_namespace::a<<endl;
     // cout << A2::k << endl;
     // cout << A2::v << endl;
