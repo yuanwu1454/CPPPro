@@ -67,8 +67,8 @@ int main()
     // Decltype::Test();
     // ConstExprClass::Test();
     // VarTest::Test();
-    // Delegate::Test();
-    UniquePtrSpace::Test();
+    Delegate::Test();
+    // UniquePtrSpace::Test();
     // cout << my_namespace::a<<endl;
     // cout << A2::k << endl;
     // cout << A2::v << endl;

@@ -3,6 +3,7 @@
 #include <list>
 #include "Test.h"
 #include "Template/practice.h"
+#include "UE4/Chapter11.h"
 #include "UE4/Chapter6.h"
 #include "UE4/Chapter7.h"
 #define USE_SELF_TEST
@@ -125,9 +126,10 @@ void Delegate::Test()
         // printFold("123",2,3.5f, 'a');
     }
 
-    Chapter5::Test();
-    DeclvalSpace::Test();
-    Chapter6::Test();
-    Chapter7::Test();
-    Practice::Test();
+    // Chapter5::Test();
+    // DeclvalSpace::Test();
+    // Chapter6::Test();
+    // Chapter7::Test();
+    // Practice::Test();
+    Chapter11::Test();
 }
