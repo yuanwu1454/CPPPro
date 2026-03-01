@@ -2,6 +2,7 @@
 #include <iostream>
 #include <list>
 #include "Test.h"
+#include "Template/Chapter11_2.h"
 #include "Template/practice.h"
 #include "UE4/Chapter11.h"
 #include "UE4/Chapter6.h"
@@ -46,14 +47,14 @@ void Delegate::Test()
     }
 
     {
-        std::cout << TAnd<>::Value << std::endl; // Êä³ö 1
+        std::cout << TAnd<>::Value << std::endl; // è¾“å‡º 1
         std::cout << TAnd<TrueType, FalseType>::Value << std::endl;
         std::cout << TAnd<TrueType, TrueType>::Value << std::endl;
         std::cout << TAnd<TrueType, TrueType, FalseType, TrueType>::Value << std::endl;
     }
 
     {
-        test<MyClass>(); // Êä³ö 100
+        test<MyClass>(); // è¾“å‡º 100
     }
 
     {
@@ -64,22 +65,22 @@ void Delegate::Test()
     {
         int x = 10;
         double y = 3.14;
-        // ·µ»ØÖµÀàĞÍÊÇdouble£¬·ûºÏÒşÊ½×ª»»¹æÔò
+        // è¿”å›å€¼ç±»å‹æ˜¯doubleï¼Œç¬¦åˆéšå¼è½¬æ¢è§„åˆ™
         auto res = generic_max(x, y);
         std::cout << "res = " << res << " value : " << typeid(res).name() << std::endl;
     }
 
     {
-        // ÔªËØÀàĞÍÍÆµ¼Îªdouble£¨int + float + doubleµÄ¹«¹²ÀàĞÍ£©
+        // å…ƒç´ ç±»å‹æ¨å¯¼ä¸ºdoubleï¼ˆint + float + doubleçš„å…¬å…±ç±»å‹ï¼‰
         // auto vec = make_vector(1, 2.5f, 3.14);
         // for (auto v : vec) {
-        //     std::cout << v << " ";  // Êä³ö£º1 2.5 3.14
+        //     std::cout << v << " ";  // è¾“å‡ºï¼š1 2.5 3.14
         // }
     }
 
     {
         // auto p = std::make_pair(a, std::ref(b));  
-        // µ×²ãÊµÏÖµÈ¼ÛÓÚ£ºstd::pair<std::decay_t<decltype(a)>, std::decay_t<decltype(std::ref(b))>>
+        // åº•å±‚å®ç°ç­‰ä»·äºï¼šstd::pair<std::decay_t<decltype(a)>, std::decay_t<decltype(std::ref(b))>>
     }
 
     {
@@ -106,10 +107,10 @@ void Delegate::Test()
     }
 
     {
-        printSize(MyString{}); // ±àÒëÍ¨¹ı£¬Êä³ö Size: 5
+        printSize(MyString{}); // ç¼–è¯‘é€šè¿‡ï¼Œè¾“å‡º Size: 5
         // std::cout << std::true_type::value<<endl;
         // std::cout << std::false_type::value<<endl;
-        // printSize(NoSizeType{}); // ´¥·¢¶ÏÑÔ£ºerror: static assertion failed: T must have size() member function!
+        // printSize(NoSizeType{}); // è§¦å‘æ–­è¨€ï¼šerror: static assertion failed: T must have size() member function!
     }
 
     {
@@ -132,4 +133,5 @@ void Delegate::Test()
     // Chapter7::Test();
     // Practice::Test();
     Chapter11::Test();
+    Chapter11_2_NS::Test();
 }

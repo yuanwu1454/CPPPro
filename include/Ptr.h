@@ -1,14 +1,12 @@
 #pragma once
-
-
 // const int a = 1; // 
 // int a = 1; 
-// »áµ¼ÖÂ±¨´í£¬ ¶¨Òå·Åµ½Í·ÎÄ¼þÀïÃæ»áÔì³É¶àÖØ¶¨Òå´íÎó£¬ÒòÎªÒ»¸öcppÎÄ¼þ¿ÉÄÜ»áÍ¬Ê±°üº¬¶à¸ö int a = 1,µ¼ÖÂ¶àÖØ¶¨Òå±¨´í¡£
-// ¼´±ã¼ÓÁËÍ·ÎÄ¼þ±£»¤ £¬Ò²»áµ¼ÖÂ±¨´í£¬¶øÇÒÊÇÔÚÁ´½ÓÊ±½øÐÐ±¨´í¡£
-// ÆÕÍ¨È«¾Ö±äÁ¿ ÓÐÍâ²¿Á´½ÓÊôÐÔ¡¢
-// extern const int a; ¾ßÓÐÍâ²¿Á´½ÓÐÅÏ¢£¬ »áÕÒµ½ const int a µÄÎ»ÖÃ/
-// const ÔÚc++ÖÐ¾ßÓÐÍâ²¿Á´½Ó  
-//ÌáÉý±àÒë / ÔËÐÐÐ§ÂÊ
+// ä¼šå¯¼è‡´æŠ¥é”™ï¼Œ å®šä¹‰æ”¾åˆ°å¤´æ–‡ä»¶é‡Œé¢ä¼šé€ æˆå¤šé‡å®šä¹‰é”™è¯¯ï¼Œå› ä¸ºä¸€ä¸ªcppæ–‡ä»¶å¯èƒ½ä¼šåŒæ—¶åŒ…å«å¤šä¸ª int a = 1,å¯¼è‡´å¤šé‡å®šä¹‰æŠ¥é”™ã€‚
+// å³ä¾¿åŠ äº†å¤´æ–‡ä»¶ä¿æŠ¤ ï¼Œä¹Ÿä¼šå¯¼è‡´æŠ¥é”™ï¼Œè€Œä¸”æ˜¯åœ¨é“¾æŽ¥æ—¶è¿›è¡ŒæŠ¥é”™ã€‚
+// æ™®é€šå…¨å±€å˜é‡ æœ‰å¤–éƒ¨é“¾æŽ¥å±žæ€§ã€
+// extern const int a; å…·æœ‰å¤–éƒ¨é“¾æŽ¥ä¿¡æ¯ï¼Œ ä¼šæ‰¾åˆ° const int a çš„ä½ç½®/
+// const åœ¨c++ä¸­å…·æœ‰å¤–éƒ¨é“¾æŽ¥  
+//æå‡ç¼–è¯‘ / è¿è¡Œæ•ˆçŽ‡
 class Ptr
 {
 public:

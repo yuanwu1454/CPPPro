@@ -27,20 +27,20 @@ void Ptr::AddressTest1()
         cout << "*p = " << *p << endl;
         // **pp = 10
         cout << "**pp = " << **pp << endl;
-        // ´òÓ¡pÖ¸ÕëµÄµØÖ· Ò²¾ÍÊÇ printf("p = %p", p)
+        // æ‰“å°pæŒ‡é’ˆçš„åœ°å€ ä¹Ÿå°±æ˜¯ printf("p = %p", p)
         cout << "p = " << (void*)p << endl;
-        // ´òÓ¡pÖ¸ÕëµÄµØÖ· Ò²¾ÍÊÇ printf("&a = %p", p)
+        // æ‰“å°pæŒ‡é’ˆçš„åœ°å€ ä¹Ÿå°±æ˜¯ printf("&a = %p", p)
         cout << "&a = " << (void*)&a << endl;
-        // ´òÓ¡ppÖ¸ÕëµÄµØÖ· Ò²¾ÍÊÇ printf("pp = %p", pp)
+        // æ‰“å°ppæŒ‡é’ˆçš„åœ°å€ ä¹Ÿå°±æ˜¯ printf("pp = %p", pp)
         cout << "pp = " << (void*)pp << endl;
-        // ´òÓ¡ppÖ¸ÕëµÄµØÖ· Ò²¾ÍÊÇ printf("&p = %p", pp)
+        // æ‰“å°ppæŒ‡é’ˆçš„åœ°å€ ä¹Ÿå°±æ˜¯ printf("&p = %p", pp)
         cout << "&p = " << (void*)&p << endl;
 
         *p = 20;
-        cout << "ĞŞ¸Äºó a = " << a << endl;
+        cout << "ä¿®æ”¹å a = " << a << endl;
 
         **pp = 30;
-        cout << "ÔÙ´ÎĞŞ¸Äºó a = " << a << endl;
+        cout << "å†æ¬¡ä¿®æ”¹å a = " << a << endl;
     }
 
     {
@@ -48,33 +48,33 @@ void Ptr::AddressTest1()
         int* p = arr;
         int(*p2)[5] = &arr;
 
-        cout << *p << endl;       // Êä³ö1
-        cout << *(p + 2) << endl;   // Êä³ö3
-        cout << p[3] << endl;     // Êä³ö4
-        cout << &arr[0] << endl;  // Êä³öp printf("%p", p)
-        cout << arr << endl;      // Êä³öp printf("%p", p)
-        cout << &arr << endl;     // Êä³ö£¿printf("%p", &p)
-        cout << *(arr) << endl;      // Êä³öp printf("%p", p)
-        cout << *(arr+1) << endl;      // Êä³öp printf("%p", p)
-        cout << *(&arr+1) << endl;     // Êä³ö£¿printf("%p", &p)
+        cout << *p << endl;       // è¾“å‡º1
+        cout << *(p + 2) << endl;   // è¾“å‡º3
+        cout << p[3] << endl;     // è¾“å‡º4
+        cout << &arr[0] << endl;  // è¾“å‡ºp printf("%p", p)
+        cout << arr << endl;      // è¾“å‡ºp printf("%p", p)
+        cout << &arr << endl;     // è¾“å‡ºï¼Ÿprintf("%p", &p)
+        cout << *(arr) << endl;      // è¾“å‡ºp printf("%p", p)
+        cout << *(arr+1) << endl;      // è¾“å‡ºp printf("%p", p)
+        cout << *(&arr+1) << endl;     // è¾“å‡ºï¼Ÿprintf("%p", &p)
 
     }
 
     {
         cout << "----------------------------------------" << endl;
         int arr[5] = { 1,2,3,4,5 };
-        int* p1 = arr;          // ÀàĞÍ£ºint*£¬Ö¸ÏòÊ×ÔªËØ
+        int* p1 = arr;          // ç±»å‹ï¼šint*ï¼ŒæŒ‡å‘é¦–å…ƒç´ 
         cout << "p1 = " << (void*)p1 << endl;
         cout << "*p1 = " << *p1 << endl;
-        int(*p2)[5] = &arr;    // ÀàĞÍ£ºint (*)[5]£¬Ö¸ÏòÕû¸öÊı×é
+        int(*p2)[5] = &arr;    // ç±»å‹ï¼šint (*)[5]ï¼ŒæŒ‡å‘æ•´ä¸ªæ•°ç»„
 
-        // ´òÓ¡µØÖ·Öµ£¨³õÊ¼ÏàÍ¬£©
+        // æ‰“å°åœ°å€å€¼ï¼ˆåˆå§‹ç›¸åŒï¼‰
         cout << "arr = " << (void*)arr << endl;
         cout << "&arr = " << (void*)&arr << endl;
 
-        // ´òÓ¡+1ºóµÄµØÖ·£¨ÌåÏÖÀàĞÍ²îÒì£©
-        cout << "arr+1 = " << (void*)(arr + 1) << endl;  // Æ«ÒÆ4×Ö½Ú£¨1¸öint£©
-        cout << "&arr+1 = " << (void*)(&arr + 1) << endl;// Æ«ÒÆ20×Ö½Ú£¨5¸öint£©
+        // æ‰“å°+1åçš„åœ°å€ï¼ˆä½“ç°ç±»å‹å·®å¼‚ï¼‰
+        cout << "arr+1 = " << (void*)(arr + 1) << endl;  // åç§»4å­—èŠ‚ï¼ˆ1ä¸ªintï¼‰
+        cout << "&arr+1 = " << (void*)(&arr + 1) << endl;// åç§»20å­—èŠ‚ï¼ˆ5ä¸ªintï¼‰
     }
 
     {
@@ -85,10 +85,10 @@ void Ptr::AddressTest1()
         int* p3 = &arr[0][0];
     }
     {
-        //const int* p; Öµ²»±ä
-        //int const * p; Öµ²»±ä
-        //int* const p; Ö¸Õë²»±ä
-        //const int* const p; Öµ²»±ä Ö¸ÕëÒ²²»±ä
+        //const int* p; å€¼ä¸å˜
+        //int const * p; å€¼ä¸å˜
+        //int* const p; æŒ‡é’ˆä¸å˜
+        //const int* const p; å€¼ä¸å˜ æŒ‡é’ˆä¹Ÿä¸å˜
     }
 }
 
@@ -155,10 +155,10 @@ void Ptr::NewFunc() {
         int var = 5;
         int var2 = 10;
         const int var3 = 8;
-        // int* cp = &var3; error ÎŞ·¨Ö±½ÓÖ¸Ïò³£Á¿
+        // int* cp = &var3; error æ— æ³•ç›´æ¥æŒ‡å‘å¸¸é‡
         // *cp = 10;
 
-        // Ö¸Ïò³£Á¿µÄÖ¸Õë
+        // æŒ‡å‘å¸¸é‡çš„æŒ‡é’ˆ
         const int* p = &var;
         p = &var2;
         cout << var << endl;
@@ -169,13 +169,13 @@ void Ptr::NewFunc() {
         cout << var << endl;
     }
     {
-        // ´íÎóÊ¾Àı1£º¶àÎ¬Êı×éµÄ´íÎóÉêÇë/ÊÍ·Å
-        int** p = new int* [5]; // ÏÈÉêÇë5¸öÖ¸Õë
+        // é”™è¯¯ç¤ºä¾‹1ï¼šå¤šç»´æ•°ç»„çš„é”™è¯¯ç”³è¯·/é‡Šæ”¾
+        int** p = new int* [5]; // å…ˆç”³è¯·5ä¸ªæŒ‡é’ˆ
         for (int i = 0; i < 5; i++) {
-            p[i] = new int[5]; // Ã¿¸öÖ¸ÕëÖ¸Ïò5¸öint
+            p[i] = new int[5]; // æ¯ä¸ªæŒ‡é’ˆæŒ‡å‘5ä¸ªint
         }
-        //delete[] p; // ½öÊÍ·ÅÁËÍâ²ãµÄÖ¸ÕëÊı×é£¬ÄÚ²ãµÄ5¸öÊı×éÄÚ´æĞ¹Â©£¡
-        // ÕıÈ·ÊÍ·Å·½Ê½£ºÏÈÊÍ·ÅÄÚ²ã£¬ÔÙÊÍ·ÅÍâ²ã
+        //delete[] p; // ä»…é‡Šæ”¾äº†å¤–å±‚çš„æŒ‡é’ˆæ•°ç»„ï¼Œå†…å±‚çš„5ä¸ªæ•°ç»„å†…å­˜æ³„æ¼ï¼
+        // æ­£ç¡®é‡Šæ”¾æ–¹å¼ï¼šå…ˆé‡Šæ”¾å†…å±‚ï¼Œå†é‡Šæ”¾å¤–å±‚
         for (int i = 0; i < 5; i++) {
             delete[] p[i];
         }
@@ -185,7 +185,7 @@ void Ptr::NewFunc() {
     {
         void* memory = malloc(4);
         if (!memory) {
-            printf("ÄÚ´æ·ÖÅäÊ§°Ü\n");
+            printf("å†…å­˜åˆ†é…å¤±è´¥\n");
         } else{
             int* p = new(memory)int(5);
             cout << *p << endl;
@@ -217,11 +217,11 @@ void Ptr::NewFunc() {
 
     //delete[] arr;
 
-     // 1. ÏÈÓÃ malloc ·ÖÅäÒ»¿éÔ­Ê¼ÄÚ´æ£¨¶ÑÉÏ£©
+     // 1. å…ˆç”¨ malloc åˆ†é…ä¸€å—åŸå§‹å†…å­˜ï¼ˆå †ä¸Šï¼‰
     printf("size:%d\n", sizeof(ClassA));
     void* rawMem = malloc(sizeof(ClassA));
     if (rawMem == nullptr) {
-        cerr << "ÄÚ´æ·ÖÅäÊ§°Ü" << endl;
+        cerr << "å†…å­˜åˆ†é…å¤±è´¥" << endl;
     }
     else {
         ClassA* aPtr = new (rawMem) ClassA(10, "this is 10");
