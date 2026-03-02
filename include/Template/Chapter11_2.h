@@ -2,6 +2,7 @@
 #include <iostream>
 #include <type_traits>
 #include <string>
+#include <vector>
 
 // . 什么是 Type Traits？
 // Type traits 是 C++11 及以后标准库（<type_traits> 头文件）提供的一套模板工具，核心作用是：
@@ -88,6 +89,45 @@ namespace Chapter11_2_NS
         foo2(t);
     }
 
+    // 当传入引用变量时，模板参数T会被推导为「被引用的原始类型」，而非引用类型本身
+    // 默认推导的「引用丢失」问题：默认推导下，即使传入引用，模板也无法感知到 “引用” 这个属性，若模板逻辑依赖于 “是否是引用类型”，则会不符合预期；
+    // 显式指定模板参数的「行为修正」问题：通过显式指定T为引用类型（如int&），可以强制模板感知到引用属性，但这也可能带来风险（模板可能未设计这种场景，导致错误 / 意外行为）。
+    // 模板函数：检查模板参数T是否是引用类型
+    template <typename T>
+    void tmplParamIsReference(T param) {
+        // 判断T是否是引用类型
+        if (std::is_reference_v<T>) {
+            std::cout << "T is a reference type" << std::endl;
+        } else {
+            std::cout << "T is NOT a reference type" << std::endl;
+        }
+    }
+
+    template <typename T>
+    void createContainer(T size) {
+        // 若T是int&，则size是引用，无法直接作为vector的大小（vector大小需是无符号整数）
+        std::vector<int> vec(size); 
+    }
+
+    // 有问题的模板容器：size参数是引用类型
+    template <typename T>
+    class BadContainer {
+    private:
+        // 改为const&：仅限制通过size_修改外部变量，不限制外部直接改
+        T const& size_; 
+        std::vector<int> data_;
+    public:
+        BadContainer(T const& size) : size_(size), data_(size) {}
+
+        void print() {
+            std::cout << "size_ = " << size_ << std::endl;
+            // 仍会因size_被外部修改而越界
+            for (int i = 0; i < size_; ++i) {
+                std::cout << data_[i] << " ";
+            }
+        }
+    };
+
     
     inline void Test()
     {
@@ -147,6 +187,33 @@ namespace Chapter11_2_NS
         {
             foo(10);  // 输出：右值版本（移动）: test10
             foo3(20);
+        }
+        {
+            int i = 10;
+            int& r = i; // 引用变量r
+
+            // 场景1：默认推导（未显式指定T）
+            tmplParamIsReference(r); // 传入引用变量r，T被推导为int（非引用）
+            tmplParamIsReference(i); // 传入普通变量i，T被推导为int（非引用）
+
+            // 场景2：显式指定T为int&（强制引用类型）
+            tmplParamIsReference<int&>(r); // T是int&（引用），行为改变
+            tmplParamIsReference<int&>(i); // 即使传入普通i，T也被强制为int&（引用）
+        }
+        {
+            int s = 5;
+            // 显式指定T为int&，触发模板实例化错误
+            createContainer<int&>(s); 
+        }
+        {
+            int s = 3;
+            BadContainer<int> container(s); // size_绑定外部变量s
+
+            // 外部修改s，容器完全不知情
+            s = 10; 
+            
+            // 打印时，容器会尝试访问10个元素，但实际只有3个→数组越界崩溃
+            container.print(); 
         }
     }
 }
