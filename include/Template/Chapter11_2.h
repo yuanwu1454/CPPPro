@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include <iostream>
 #include <type_traits>
+#include <string>
 
 // . 什么是 Type Traits？
 // Type traits 是 C++11 及以后标准库（<type_traits> 头文件）提供的一套模板工具，核心作用是：
@@ -54,7 +55,39 @@ namespace Chapter11_2_NS
         // 暴露真实值（仅用于验证）
         int getValue() const { return value; }
     };
+
+
+    // 当需要转发的不是函数参数、而是中间临时值时，如何用 auto&& + std::forward<decltype(val)> 实现零拷贝的完美转发。
     
+    // 模拟 get()：返回右值（临时对象）
+    std::string get(int x) { return std::string("test") + std::to_string(x); }
+
+    // 模拟 set()：重载左值/右值版本
+    inline void set(const std::string& s) { std::cout << "left version copy  " << s << std::endl; }
+    inline void set(std::string&& s)      { std::cout << "right value version move" << s << std::endl; }
+    
+    template<typename T>
+    void foo(T x) {
+        auto&& val = get(x);
+        set(std::forward<decltype(val)>(val));  // 触发右值版本（移动）
+    }
+
+    template<typename T>
+    void foo2 (T&& t)  // T&& 是转发引用（不是右值引用！）
+    {
+        set(std::forward<T>(t));  // 完美转发：保持实参的左/右值属性
+    }
+
+
+    // 引用只是避免了「参数传递时的拷贝」，但如果函数内部要把参数存为新对象，值类别才决定是否拷贝。
+    // 引用解决「参数传递的拷贝」，但值类别决定「对象构造的拷贝」—— 这就是为什么都是引用，却可能触发拷贝的根本原因。
+    template<typename T>
+    void foo3 (T&& x)  // T&& 是转发引用（不是右值引用！）
+    {
+        auto t = get(x);
+        foo2(t);
+    }
+
     
     inline void Test()
     {
@@ -110,6 +143,10 @@ namespace Chapter11_2_NS
             // 2. 用 std::addressof 取地址：绕过重载，得到真实地址
             void* real_addr = std::addressof(obj);
             std::cout << "Address via addressof: " << real_addr << std::endl;
+        }
+        {
+            foo(10);  // 输出：右值版本（移动）: test10
+            foo3(20);
         }
     }
 }
