@@ -26,7 +26,13 @@ void PrintPersonInfo(Person& person, Callback ptr, int a, int b)
 // int Person::*staticAgePtr = &Person::age;
 
 string Person::*Person::staticNamePtr = &Person::name;
+// 两个 Person:: 都是类限定符，只是限定的对象不同：
+// Person::* 中的 Person::：限定「成员指针指向的成员属于 Person 类」（限定成员指针的关联类）；
+// Person::staticNamePtr 中的 Person::：限定「staticNamePtr 这个静态变量属于 Person 类」（限定静态变量的归属类）。
+// 额外补充：&Person::name 中的 Person:: 也是类限定符，作用是限定 name 是 Person 类的成员，不能直接写 &name（编译器不知道 name 属于哪个类）。
+
 int Person::*Person::staticAgePtr = &Person::age;
+
 int Person::sv = 7;
 
 int xadd(int a, int b)
@@ -42,7 +48,7 @@ using AddFunc = int (*)(int, int);
 
 void Person::Test()
 {
-    string Person::*ptr = &Person::name;
+    string Person::* ptr = &Person::name;
     // ::* 不是一个整体运算符号，作用域解析 和指针声明的两个书写
     Person p1("Bob", 10);
     // .* 是一个整体运算符
