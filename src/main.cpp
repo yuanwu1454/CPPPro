@@ -61,13 +61,13 @@ int main()
     // Person::Test();
     // FuncPtrTest::Test();
     // LamdaTest::Test();
-    // UnionTest::Test();
+    UnionTest::Test();
     // MutableClass::Test();
     // AutoClassTest::Test();
     // Decltype::Test();
     // ConstExprClass::Test();
     // VarTest::Test();
-    Delegate::Test();
+    // Delegate::Test();
     // UniquePtrSpace::Test();
     // cout << my_namespace::a<<endl;
     // cout << A2::k << endl;

@@ -66,6 +66,14 @@ struct PackedStruct {
 // intptr_t/uintptr_t	4 字节	8 字节	专门用来存储指针的整数类型，保证能完整容纳一个指针值
 // long（C/C++）	4 字节	8 字节	注意：long 不是固定 4 字节！Linux/macOS 下 64 位 long 是 8 字节，Windows 下例外
 
+#pragma pack(4)
+struct A {
+    char a;   // 大小1，对齐1 → 地址0
+    // 有效对齐 是自己的对齐值与当前设置的对齐值的有效值
+    double b; // 大小8，有效对齐4 → 地址4（补齐3字节），占4-11
+};
+
+
 // 提高 CPU 访问内存的效率
 void UnionTest::Test()
 {
@@ -98,4 +106,5 @@ void UnionTest::Test()
     cout << "MyType data size value is " << sizeof(MyType::data) << endl;    
     cout << "MyType2 align value is " << alignof(MyType2) << endl;
     cout << "MyType2 size value is " << sizeof(MyType2) << endl;
+    cout << "A size value is " << sizeof(A) << endl;
 }

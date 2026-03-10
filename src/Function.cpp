@@ -151,18 +151,18 @@ namespace MyFunction
             // 值捕获 + mutable：修改的是副本，不影响原变量
             std::function<void()> func1 = [a]() mutable {
                 a += 5;
-                std::cout << "func1内的a：" << a << std::endl; // 输出 15
+                std::cout << "func1内的a" << a << std::endl; // 输出 15
             };
             func1();
-            std::cout << "原变量a：" << a << std::endl; // 输出 10（未变）
+            std::cout << "原变量a" << a << std::endl; // 输出 10（未变）
 
             // 引用捕获：修改的是原变量，无需mutable
             std::function<void()> func2 = [&a]() {
                 a += 5;
-                std::cout << "func2内的a：" << a << std::endl; // 输出 15
+                std::cout << "func2内的a" << a << std::endl; // 输出 15
             };
             func2();
-            std::cout << "原变量a：" << a << std::endl; // 输出 15（已变）
+            std::cout << "原变量a" << a << std::endl; // 输出 15（已变）
         }
     }
 }
