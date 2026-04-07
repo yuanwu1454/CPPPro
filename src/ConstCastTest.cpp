@@ -11,7 +11,8 @@ public:
     MyString(const char* str) {
         length = strlen(str);
         data = new char[length + 1];
-        strcpy_s(data, length+1, str);
+         // 跨平台安全拷贝（Windows / Mac / Linux 通用）
+        strncpy(data, str, length + 1);
     }
 
     // 析构函数
