@@ -8,6 +8,7 @@
 #include "ConstCastTest.h"
 #include "ConstExprClass.h"
 #include "Decltype.h"
+#include "FriendTest.h"
 #include "StaticCast.h"
 #include "ReinterpretCast.h"
 #include "TemplateTest.h"
@@ -61,7 +62,8 @@ int main()
     // Person::Test();
     // FuncPtrTest::Test();
     // LamdaTest::Test();
-    UnionTest::Test();
+    // UnionTest::Test();
+    FriendTest::Test();
     // MutableClass::Test();
     // AutoClassTest::Test();
     // Decltype::Test();

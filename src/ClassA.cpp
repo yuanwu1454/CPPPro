@@ -117,6 +117,7 @@ void ClassA::NewRes(const char* InPtr) {
     if (InPtr) {
         int len = strlen(InPtr);
         ptr = new char[len + 1];
-        strcpy_s(ptr, len + 1, InPtr);
+         // 跨平台安全拷贝（Windows / Mac / Linux 通用）
+        strncpy(ptr, InPtr, len + 1);
     }
 }

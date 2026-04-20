@@ -236,7 +236,10 @@ void Ptr::CharTest()
     const char* ptrs = "zxcvxzcv";
     int len = strlen(ptrs);
     ptr = new char[len + 1];
-    strcpy_s(ptr, len + 1, ptrs);
+
+    // 跨平台安全拷贝（Windows / Mac / Linux 通用）
+    strncpy(ptr, ptrs, len + 1);
+
     cout << ptr << endl;
     delete[] ptr;
 }

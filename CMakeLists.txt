@@ -4,10 +4,22 @@ cmake_minimum_required(VERSION 3.10)
 # 工程名称和语言：改为 CXX（C++），同时兼容 C（因为 Lua 是 C 库）
 project(CPPDemo CXX C)
 
-# 设置 C++ 语言标准（适配 .cpp 文件）
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+# ====================== 关键：按平台设置 C++ 标准 ======================
+if(APPLE)
+    # macOS 使用 C++17
+    set(CMAKE_CXX_STANDARD 17)
+elseif(WIN32)
+    # Windows 使用 C++11
+    set(CMAKE_CXX_STANDARD 11)
+endif()
 
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+# ========== 正确：显示所有错误，不中断 ==========
+if(APPLE)
+    add_compile_options(-ferror-limit=0)  # 错误数量无上限
+endif()
 # -------------------------- 工具函数：自动生成IDE目录分组（核心修复层级） --------------------------
 # 功能：根据文件的相对路径，在IDE中创建对应的虚拟目录层级
 function(assign_source_group)

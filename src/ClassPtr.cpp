@@ -67,9 +67,9 @@ void Person::Test()
      pAdd(5,7);
 
     {
-        int(Person::*addPtr)(int,int) = &add;
-        int(Person::*subPtr)(int,int) = &sub;
-        int(Person::*mulPtr)(int,int) = &mul;
+        int(Person::*addPtr)(int,int) = &Person::add;
+        int(Person::*subPtr)(int,int) = &Person::sub;
+        int(Person::*mulPtr)(int,int) = &Person::mul;
         // p1.*addPtr(5,6) error
         cout << (p1.*addPtr)(5,6)<<endl;
         cout << (p1.*mulPtr)(5,6)<<endl;

@@ -135,7 +135,7 @@ namespace Chapter11_2_NS
             // 1. 判断基础类型特性
             std::cout << "int is integral: " << std::is_integral<int>::value << std::endl;       // 1 (true)
             std::cout << "double is integral: " << std::is_integral<double>::value << std::endl; // 0 (false)
-    
+            
             // 2. 判断指针/引用
             using T = const int&;
             std::cout << "T is const: " << std::is_const<T>::value << std::endl;                 // 0（引用本身无 const，const 修饰的是 int）
