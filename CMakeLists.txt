@@ -16,6 +16,10 @@ endif()
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+if(MSVC)
+    add_compile_options(/utf-8)
+endif()
+
 # ========== 正确：显示所有错误，不中断 ==========
 if(APPLE)
     add_compile_options(-ferror-limit=0)  # 错误数量无上限
